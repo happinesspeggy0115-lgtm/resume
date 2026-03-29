@@ -13,6 +13,8 @@ margin:0;
 padding:40px;
 display:flex;
 justify-content:center;
+align-items:center;
+min-height:100vh;
 }
 
 .card{
@@ -21,6 +23,11 @@ padding:30px;
 width:600px;
 border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 h1{
@@ -49,6 +56,11 @@ justify-content:space-between;
 width:45%;
 }
 
+img{
+border-radius:50%;
+margin-top:10px;
+}
+
 button{
 margin-top:20px;
 padding:10px 18px;
@@ -67,11 +79,12 @@ background:#16a085;
 </head>
 
 <body>
-  
-<audio id="bgm" controls loop>
-    <source src="music(3).mp3" type="audio/mpeg">
+
+<!-- 🎵 音樂 -->
+<audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
-  
+
 <div class="card">
 
 <p><b>學號：</b>114054003</p>
@@ -122,28 +135,35 @@ background:#16a085;
 
 <p>Email：happinesspeggy0115@gmail.com</p>
 
-<button onclick="playMusic()">播放音樂</button>
+<!-- 🎵 音樂控制按鈕 -->
+<button onclick="toggleMusic()" id="btn">播放音樂</button>
+
+<!-- 🖨️ 列印 -->
+<button onclick="printResume()">列印 / 另存 PDF</button>
 
 </div>
 
 <script>
 
-function printResume(){
-window.print();
-}
-
-<button onclick="toggleMusic()">播放 / 暫停</button>
-
-<script>
+// 音樂控制
 function toggleMusic(){
     var music = document.getElementById("bgm");
+    var btn = document.getElementById("btn");
+
     if(music.paused){
         music.play();
+        btn.innerText = "暫停音樂";
     }else{
         music.pause();
+        btn.innerText = "播放音樂";
     }
 }
-</script>
+
+// 列印
+function printResume(){
+    window.print();
+}
+
 </script>
 
 </body>
